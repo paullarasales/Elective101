@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentControllerJps;
 use App\Http\Controllers\PagesControllerJps;
+use App\Http\Controllers\ClientControllerJPS;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,8 @@ Route::get('/contactus', [PagesControllerJps::class,'contactus']);
 Route::get('/aboutus', [PagesControllerJps::class, 'aboutus']);
 Route::get('controlstructure', [PagesControllerJps::class, 'control']);
 Route::get('/client/{ClientID?}', [PagesControllerJps::class, 'client']);
+Route::get('/clients', [PagesControllerJps::class, 'clientData'])->name('clients.data');
 
 
 Route::resource('/student', StudentControllerJps::class);
+Route::resource('/ClientManagement', ClientControllerJPS::class);

@@ -16,8 +16,7 @@
   <style>
     body {
         font-family: 'Poppins', sans-serif;
-        background: rgb(11,1,35);
-        background: linear-gradient(82deg, rgba(11,1,35,1) 0%, rgba(36,3,33,1) 69%);
+        background: #fff;
     }
     /* Animation */
     @keyframes wave {
@@ -32,25 +31,36 @@
       display: inline-block;
       animation: wave 2s infinite;
     }
+
+    .top, .bottom  {
+        background: #002244;
+    }
+
+    .active-link {
+        color: blue; /* Change the color to blue */
+        font-weight: bold;
+    }
   </style>
 
   @vite('resources/css/app.css')
 </head>
 <body class="h-screen flex flex-col">
     <!-- Top Navbar -->
-    <div class="h-16 flex flex-row items-center justify-evenly w-full">
-        <div class="w-1/5">
-            <h1 class="text-blue-500 text-4xl font-semibold tracking-wide">Elective101</h1>
+    <div class="h-16 flex flex-row items-center justify-evenly w-full top">
+        <div class="w-1/5 ml-10">
+            <h1 class="text-blue-300 text-4xl font-semibold tracking-wide">Elective101</h1>
         </div>
-        <div class="flex flex-row items-center justify-evenly w-3/6 h-full">
-            <a href="main" class="text-lg font-normal text-gray-400">Home</a>
-            <a href="controlstructure" class="text-lg font-normal text-gray-400">Control Structures</a>
-            <a href="contactus" class="text-lg font-normal text-gray-400">Contact us</a>
-            <a href="aboutus" class="text-lg font-normal text-gray-400">About us</a>
-            <a href="client" class="text-lg font-normal text-gray-400">Client</a>
+        <div class="flex flex-row items-center justify-around w-4/6 h-full">
+            <a href="main" class="text-md font-medium text-gray-500 @if(Request::is('main') || Request::is('/')) active-link @endif">Home</a>
+            <a href="controlstructure" class="text-md font-medium text-gray-500 @if(Request::is('controlstructure')) active-link @endif">Control Structures</a>
+            <a href="contactus" class="text-md font-medium text-gray-500 @if(Request::is('contactus')) active-link @endif">Contact us</a>
+            <a href="aboutus" class="text-md font-medium text-gray-500 @if(Request::is('aboutus')) active-link @endif">About us</a>
+            <a href="client" class="text-md font-medium text-gray-500 @if(Request::is('client')) active-link @endif">Client</a>
+            <a href="clients" class="text-md font-medium text-gray-500 @if(Request::is('clients')) active-link @endif">Client Management</a>
+            <a href="/ClientManagement/create" class="text-md font-medium text-gray-500 @if(Request::is('/ClientManagement/create')) active-link @endif">Client Form</a>
         </div>
-        <div class="flex items-center justify-center  w-1/5 h-full">
-            <a href="dashboard" class="text-lg font-normal text-gray-400">Others</a>
+        <div class="flex items-center justify-center  w-1/5 h-full b">
+            <a href="dashboard" class="text-lg font-normal text-gray-400">Paul Sales</a>
         </div>
     </div>
 
@@ -62,8 +72,10 @@
     @endif
     
     <!-- Content -->
-    <div class="flex-1 flex items-center justify-center h-96 w-full">
-        @yield('content')
+    <div class="flex items-center justify-center h-96 w-full mt-32">
+        <div class="flex items-center justify-center h-full w-5/6">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Content -->
@@ -73,7 +85,7 @@
 
 
     
-    <div class="h-10 flex items-center justify-center">
+    <div class="h-10 flex items-center justify-center bottom">
         <h1 class="text-lg font-normal tracking-wide text-gray-500">salespaul@gmail.com</h1>
     </div>
 
